@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vega-Sonic VS-12 | Ultrasonic Gas Flow Meter | NPP Vega</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary: #f59e0b; --primary-dark: #d97706; --dark: #0f172a; --dark-2: #1e293b; --dark-3: #334155; --gray: #94a3b8; --white: #fff; --accent: #22d3ee; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245,158,11,0.15), transparent), radial-gradient(ellipse 60% 40% at 100% 100%, rgba(34,211,238,0.1), transparent); pointer-events: none; z-index: -1; }
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(15,23,42,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .header-inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; height: 80px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 14px; }
+    .logo-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: var(--dark); }
+    .logo-text { font-weight: 700; font-size: 22px; letter-spacing: -0.5px; }
+    .logo-text span { color: var(--primary); }
+    .nav { display: flex; align-items: center; gap: 40px; }
+    .nav a { color: var(--gray); text-decoration: none; font-weight: 500; font-size: 15px; transition: color 0.2s; }
+    .nav a:hover { color: var(--primary); }
+    .header-actions { display: flex; align-items: center; gap: 16px; }
+    .lang-switcher { display: flex; background: var(--dark-2); border-radius: 8px; padding: 4px; }
+    .lang-btn { padding: 8px 14px; border: none; background: transparent; color: var(--gray); font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+    .lang-btn.active { background: var(--primary); color: var(--dark); }
+    .btn { padding: 12px 28px; border-radius: 10px; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: var(--primary); color: var(--dark); border: none; }
+    .btn-primary:hover { background: #fbbf24; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,158,11,0.3); }
+    .btn-outline { background: transparent; border: 2px solid var(--gray); color: var(--white); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .hero { padding: 180px 40px 120px; min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+    .hero-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 50px; font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 24px; }
+    .hero h1 { font-size: 64px; font-weight: 800; line-height: 1.05; margin-bottom: 24px; letter-spacing: -2px; }
+    .hero h1 .highlight { background: linear-gradient(135deg, var(--primary), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 18px; color: var(--gray); margin-bottom: 36px; max-width: 520px; line-height: 1.7; }
+    .hero-stats { display: flex; gap: 48px; margin-bottom: 40px; }
+    .stat-value { font-size: 42px; font-weight: 700; color: var(--primary); line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--gray); margin-top: 4px; }
+    .hero-buttons { display: flex; gap: 16px; }
+    .hero-card { background: linear-gradient(145deg, var(--dark-2), var(--dark-3)); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px; text-align: center; }
+    .hero-product-img { width: 100%; max-width: 350px; height: auto; border-radius: 16px; margin-bottom: 24px; }
+    .hero-features { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .hero-feature { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--gray); }
+    .hero-feature span { color: var(--accent); }
+    .section-header { max-width: 700px; margin: 0 auto 60px; text-align: center; }
+    .section-badge { display: inline-block; padding: 10px 20px; background: rgba(245,158,11,0.1); border-radius: 50px; font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 20px; }
+    .section-title { font-size: 48px; font-weight: 700; margin-bottom: 16px; letter-spacing: -1px; }
+    .section-desc { font-size: 18px; color: var(--gray); }
+    .features { padding: 120px 40px; background: var(--dark-2); }
+    .features-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature-card { background: var(--dark); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 36px; transition: all 0.3s; }
+    .feature-card:hover { border-color: var(--primary); transform: translateY(-8px); }
+    .feature-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px; }
+    .feature-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+    .feature-card p { font-size: 15px; color: var(--gray); line-height: 1.7; }
+    .applications { padding: 120px 40px; }
+    .apps-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .app-card { background: var(--dark-2); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px; display: flex; gap: 24px; align-items: center; }
+    .app-icon { width: 80px; height: 80px; background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.3); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; }
+    .app-card h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+    .app-card p { color: var(--gray); font-size: 15px; }
+    .specs { padding: 120px 40px; background: var(--dark-2); }
+    .specs-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .spec-item { background: var(--dark); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 32px 24px; text-align: center; transition: all 0.3s; }
+    .spec-item:hover { border-color: var(--primary); }
+    .spec-value { font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .spec-label { font-size: 14px; color: var(--gray); }
+    .cta { padding: 120px 40px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); text-align: center; }
+    .cta h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; color: var(--dark); }
+    .cta p { font-size: 20px; color: rgba(15,23,42,0.7); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .cta .btn { background: var(--dark); color: var(--white); }
+    .contact { padding: 120px 40px; }
+    .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .contact h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; }
+    .contact > div > p { font-size: 18px; color: var(--gray); margin-bottom: 32px; }
+    .contact-form { background: var(--dark-2); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--gray); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 16px 20px; background: var(--dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--white); font-size: 15px; font-family: inherit; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .footer { padding: 60px 40px 30px; background: var(--dark-2); border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
+    .footer-brand p { color: var(--gray); margin-top: 16px; font-size: 15px; max-width: 300px; }
+    .footer h4 { font-size: 16px; font-weight: 600; margin-bottom: 20px; }
+    .footer a { display: block; color: var(--gray); text-decoration: none; font-size: 14px; margin-bottom: 12px; transition: color 0.2s; }
+    .footer a:hover { color: var(--primary); }
+    .footer-bottom { max-width: 1400px; margin: 40px auto 0; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--gray); font-size: 14px; }
+    @media (max-width: 1024px) { .hero-inner, .features-grid, .contact-inner, .apps-grid { grid-template-columns: 1fr; } .hero p { margin: 0 auto 36px; } .hero-stats, .hero-buttons { justify-content: center; } .specs-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .header-inner { padding: 0 20px; } .nav { display: none; } .hero { padding: 120px 20px 80px; } .hero h1 { font-size: 40px; } .features, .applications, .specs, .contact { padding: 80px 20px; } .features-grid, .specs-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo"><div class="logo-icon">VS</div><div class="logo-text">VEGA<span>SONIC</span></div></div>
+      <nav class="nav"><a href="#home">Home</a><a href="#features">Features</a><a href="#applications">Applications</a><a href="#specs">Specs</a><a href="#contact">Contact</a></nav>
+      <div class="header-actions">
+        <div class="lang-switcher"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('es')">ES</button><button class="lang-btn" onclick="setLang('ru')">RU</button></div>
+        <a href="#contact" class="btn btn-primary">Get Quote</a>
+      </div>
+    </div>
+  </header>
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span>🏭</span> NPP Vega Technology</div>
+        <h1>Vega-Sonic <span class="highlight">VS-12</span></h1>
+        <p id="hero-desc">High-precision ultrasonic gas flow meter for flare gas measurement, petrochemical plants, and hydrocarbon applications. Industry-leading accuracy up to 1%.</p>
+        <div class="hero-stats"><div><div class="stat-value">±1%</div><div class="stat-label" id="stat1">Accuracy</div></div><div><div class="stat-value">10yr</div><div class="stat-label" id="stat2">Data Logging</div></div><div><div class="stat-value">ATEX</div><div class="stat-label" id="stat3">Certified</div></div></div>
+        <div class="hero-buttons"><a href="#contact" class="btn btn-primary" id="cta-btn">Request Quote →</a><a href="#features" class="btn btn-outline">Learn More</a></div>
+      </div>
+      <div class="hero-card">
+        <div style="background: linear-gradient(135deg, #1e293b, #334155); border-radius: 16px; padding: 60px 40px; margin-bottom: 24px;">
+          <div style="font-size: 100px; text-align: center; opacity: 0.3;">🔧</div>
+          <h3 style="font-size: 24px; margin-top: 20px;">VS-12 Ultrasonic Gas Flow Meter</h3>
+          <p style="color: #94a3b8; margin-top: 8px;">Hot-Tap Installation Available</p>
+        </div>
+        <div class="hero-features"><div class="hero-feature"><span>✓</span> 2-Path Design</div><div class="hero-feature"><span>✓</span> HCG Measurement</div><div class="hero-feature"><span>✓</span> Modbus/HART</div></div>
+      </div>
+    </div>
+  </section>
+  <section class="features" id="features">
+    <div class="section-header"><span class="section-badge">KEY FEATURES</span><h2 class="section-title">Engineered for Performance</h2><p class="section-desc">Advanced technology for the most demanding industrial applications.</p></div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🔧</div><h3>Hot-Tap Installation</h3><p>Install sensors without process interruption. Extract sensors through dedicated mechanism.</p></div>
+      <div class="feature-card"><div class="feature-icon">🎯</div><h3>Ultra High Accuracy</h3><p>Up to 1% accuracy with 2-path design. Field calibration for 0.5% precision.</p></div>
+      <div class="feature-card"><div class="feature-icon">⚗️</div><h3>HCG Mass Flow</h3><p>Direct measurement of hydrocarbon gas molecular weight in range 2-160 g/mol.</p></div>
+      <div class="feature-card"><div class="feature-icon">🛡️</div><h3>Robust Construction</h3><p>Temperature -220°C to +260°C. Pressure up to 24 MPa. ATEX Zone 1 certified.</p></div>
+      <div class="feature-card"><div class="feature-icon">📡</div><h3>Digital Interfaces</h3><p>HART, Modbus RS485/RS232, 4-20mA output. FDT/DTM configuration.</p></div>
+      <div class="feature-card"><div class="feature-icon">💾</div><h3>10-Year Data Storage</h3><p>Internal memory up to 10 years. Multiple logging intervals.</p></div>
+    </div>
+  </section>
+  <section class="applications" id="applications">
+    <div class="section-header"><span class="section-badge">APPLICATIONS</span><h2 class="section-title">Versatile Solutions</h2><p class="section-desc">Designed for multiple industrial applications across Oil & Gas sector.</p></div>
+    <div class="apps-grid">
+      <div class="app-card"><div class="app-icon">🔥</div><div><h3>Flare Gas Measurement</h3><p>Accurate measurement of flare gas in refineries and petrochemical plants.</p></div></div>
+      <div class="app-card"><div class="app-icon">⚗️</div><div><h3>Petrochemical Plants</h3><p>Process control and custody transfer in chemical facilities.</p></div></div>
+      <div class="app-card"><div class="app-icon">🛢️</div><div><h3>Associated Petroleum Gas</h3><p>Monitoring and optimization of APG in oil production.</p></div></div>
+      <div class="app-card"><div class="app-icon">📊</div><div><h3>Custody Transfer</h3><p>Certified measurements for commercial gas accounting.</p></div></div>
+    </div>
+  </section>
+  <section class="specs" id="specs">
+    <div class="section-header"><span class="section-badge">TECHNICAL SPECIFICATIONS</span><h2 class="section-title">Performance Data</h2></div>
+    <div class="specs-grid">
+      <div class="spec-item"><div class="spec-value">0.03-100</div><div class="spec-label">m/s Flow Velocity</div></div>
+      <div class="spec-item"><div class="spec-value">80-1650</div><div class="spec-label">mm Pipe Diameter</div></div>
+      <div class="spec-item"><div class="spec-value">-220°+260°</div><div class="spec-label">°C Temperature</div></div>
+      <div class="spec-item"><div class="spec-value">0.087-24</div><div class="spec-label">MPa Pressure</div></div>
+    </div>
+  </section>
+  <section class="cta" id="contact">
+    <h2>Ready to Get Started?</h2>
+    <p>Contact our team for technical consultation and commercial proposal.</p>
+    <a href="#contact" class="btn">Request Your Quote →</a>
+  </section>
+  <section class="contact">
+    <div class="contact-inner">
+      <div>
+        <h2>Get Your Quote</h2>
+        <p>Contact our team for technical consultation and commercial proposal. We'll respond within 24 hours.</p>
+        <p style="font-weight:600;margin-top:32px;">📧 info@en-automation.ru</p>
+        <p style="font-weight:600;">📞 +7 (495) 123-45-67</p>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group"><label>Full Name *</label><input type="text" name="name" required></div>
+          <div class="form-group"><label>Email Address *</label><input type="email" name="email" required></div>
+          <div class="form-group"><label>Company</label><input type="text" name="company"></div>
+          <div class="form-group"><label>Country</label><select name="country"><option value="">Select Country</option><option value="Germany">Germany</option><option value="France">France</option><option value="UK">United Kingdom</option><option value="Italy">Italy</option><option value="Spain">Spain</option><option value="UAE">UAE</option><option value="Saudi">Saudi Arabia</option><option value="Kazakhstan">Kazakhstan</option></select></div>
+          <div class="form-group"><label>Application</label><select name="application"><option value="">Select Application</option><option value="Flare Gas">Flare Gas Measurement</option><option value="Petrochemical">Petrochemical Plant</option><option value="APG">Associated Petroleum Gas</option><option value="Custody">Custody Transfer</option><option value="Other">Other</option></select></div>
+          <div class="form-group"><label>Requirements</label><textarea name="message"></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%">Submit Request →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="logo" style="margin-bottom:16px;"><div class="logo-icon">VS</div><div class="logo-text">VEGA<span>SONIC</span></div></div><p>Advanced ultrasonic gas flow metering solutions for the Oil & Gas industry since 1991.</p></div>
+      <div><h4>Product</h4><a href="#features">Features</a><a href="#specs">Specifications</a><a href="#applications">Applications</a><a href="#contact">Contact</a></div>
+      <div><h4>Company</h4><a href="#">About NPP Vega</a><a href="#">Certificates</a><a href="#">Support</a></div>
+      <div><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 NPP Vega. All rights reserved.</div>
+  </footer>
+  <script>
+    const t = {
+      en: { heroDesc: "High-precision ultrasonic gas flow meter for flare gas measurement, petrochemical plants, and hydrocarbon applications. Industry-leading accuracy up to 1%.", cta: "Request Quote →", stat1: "Accuracy", stat2: "Data Logging", stat3: "Certified", learn: "Learn More" },
+      es: { heroDesc: "Medidor de flujo de gas ultrasónico de alta precisión para gas de antorcha y plantas petroquímicas. Precisión hasta 1%.", cta: "Solicitar Cotización →", stat1: "Precisión", stat2: "Registro Datos", stat3: "Certificado", learn: "Más Información" },
+      ru: { heroDesc: "Высокоточный ультразвуковой расходомер для факельного газа и нефтехимии. Точность до 1%.", cta: "Получить Котировку →", stat1: "Точность", stat2: "Запись Данных", stat3: "Сертификат", learn: "Узнать Больше" }
+    };
+    function setLang(l) {
+      document.getElementById('hero-desc').textContent = t[l].heroDesc;
+      document.getElementById('cta-btn').textContent = t[l].cta;
+      document.getElementById('stat1').textContent = t[l].stat1;
+      document.getElementById('stat2').textContent = t[l].stat2;
+      document.getElementById('stat3').textContent = t[l].stat3;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+    document.getElementById('contactForm').addEventListener('submit', e => { e.preventDefault(); alert('Thank you! We will contact you shortly.'); });
+  </script>
+</body>
+</html>
